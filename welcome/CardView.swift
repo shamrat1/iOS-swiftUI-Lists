@@ -14,15 +14,19 @@ struct CardView: View {
             LinearGradient(gradient: Gradient(colors: [Color.orange,Color.red]), startPoint: .top, endPoint: .bottom)
             
             
-            VStack(alignment: .center){
-                TopView()
-                Spacer()
-                
-                MiddleView()
-                Spacer()
-                
-                
-            }
+                VStack(alignment: .center){
+                    TopView()
+                    Spacer()
+                    
+                    CardStackView()
+                    Spacer()
+                    
+                    BottomView()
+                        .padding(.bottom,60)
+                    
+                }
+            
+            
             
         }.edgesIgnoringSafeArea(.all)
         
@@ -77,11 +81,55 @@ struct MiddleView: View {
                     .font(.body)
                     .frame(width: 300)
             }
+            .padding(.bottom)
+            
+            Button(action: {
+                //
+            }) {
+                Text("Pre-order Now!")
+                    .padding()
+                    .foregroundColor(.black)
+                    .background(Color.orange)
+                    .cornerRadius(12)
+            }
             
         }
         .padding()
         .background(Color.white)
         .cornerRadius(20)
         .shadow(color: .black, radius: 3, x: 3, y: 3)
+    }
+}
+
+struct CardStackView: View {
+    var body: some View {
+        ZStack {
+            Rectangle()
+                .foregroundColor(.white)
+                .opacity(0.4)
+                .frame(width: 280, height: 100)
+                .cornerRadius(20)
+                .offset(x: 0, y:155)
+            MiddleView()
+        }
+    }
+}
+
+struct BottomView: View {
+    var body: some View {
+        HStack{
+            Image(systemName: "chevron.left")
+                .font(.system(size: 30))
+            Spacer()
+            .frame(width: 25)
+            
+            Text("1 / 5")
+                .font(.headline)
+            Spacer()
+                .frame(width: 25)
+            
+            Image(systemName: "chevron.right")
+                .font(.system(size: 30))
+        }.padding()
     }
 }
