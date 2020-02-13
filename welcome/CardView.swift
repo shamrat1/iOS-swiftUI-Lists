@@ -41,6 +41,7 @@ struct CardView_Previews: PreviewProvider {
 }
 
 struct TopView: View {
+    @State private var scale : CGFloat = 1
     var body: some View {
         HStack{
             VStack(alignment: .leading){
@@ -57,6 +58,15 @@ struct TopView: View {
             Image(systemName: "faceid")
                 .font(.system(size: 50))
                 .foregroundColor(.white)
+            .scaleEffect(scale)
+                .onAppear {
+                    let baseAnimation = Animation.easeInOut(duration: 1)
+                    let repeated = baseAnimation.repeatForever(autoreverses: true)
+
+                    return withAnimation(repeated){
+                        self.scale = 0.5
+                    }
+            }
         }
         .padding()
     }
