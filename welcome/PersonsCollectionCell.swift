@@ -11,11 +11,13 @@ import SwiftUI
 struct PersonsCollectionCell: View {
     var person = Person()
     var body: some View {
+        
         VStack{
             Image(person.image)
                 .resizable()
+                .aspectRatio(contentMode: .fill)
                 .scaledToFit()
-                .frame(width: 100, height: 100, alignment: .center)
+                .frame(width: 100, height: 100)
             Text(person.name)
                 .fontWeight(.bold)
             Text(person.description)
